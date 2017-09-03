@@ -1,4 +1,11 @@
 language: objective-c
 osx_image: xcode8.3
 xcode_project: TestBuild.xcodeproj
-script: ./scripts/travis-ci.bash
+jobs:
+  include:
+    - stage: test
+      script: ./scripts/travis-ci.bash
+    - # stage name not required, will continue to use `test`
+      script: ./scripts/test.bash
+    - stage: deploy
+      script: ./scripts/deploy.bash
